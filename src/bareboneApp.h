@@ -1,3 +1,4 @@
+/* -*- objective-c++ -*- */
 /*
  * Copyright (c) 2013 Vincent Lee. All rights reserved.
  *
@@ -24,38 +25,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "bareboneApp.h"
-#import "windowDelegate.h"
 
-int main(int argc, char *argv[])
-{
-  ProcessSerialNumber psn;
-  if (!GetCurrentProcess(&psn)) {
-    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-    SetFrontProcess(&psn);
-  }
-
-  [BareboneApp sharedApplication];
-
-  NSWindow *window;
-  NSRect frame = NSMakeRect(100, 100, 640, 480);
-  NSUInteger styleMask = NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask;
-  NSRect rect = [NSWindow contentRectForFrameRect:frame styleMask:styleMask];
-  window = [[NSWindow alloc] initWithContentRect:rect styleMask:styleMask backing:NSBackingStoreBuffered defer:false];
-  [window setBackgroundColor:[NSColor blackColor]];
-
-  WindowDelegate *delegate = [WindowDelegate new];
-  [window setDelegate:delegate];
-
-  [window makeKeyAndOrderFront:nil];
-
-  while (1) {
-    while (1) {
-      NSEvent *event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
-      if (event == nil)
-        break;
-
-      [NSApp sendEvent:event];
-    }
-  }
+@interface BareboneApp: NSApplication {
 }
+
+@end

@@ -1,4 +1,4 @@
-// -*- objective-c++ -*-
+/* -*- objective-c++ -*- */
 /*
  * Copyright (c) 2013 Vincent Lee. All rights reserved.
  *

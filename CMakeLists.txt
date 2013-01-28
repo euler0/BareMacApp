@@ -8,6 +8,8 @@ find_library(COCOA_LIBRARY Cocoa)
 find_library(CARBON_LIBRARY Carbon)
 
 set(SOURCE_FILES
+  src/bareboneApp.h
+  src/bareboneApp.m
   src/main.m
   src/windowDelegate.h
   src/windowDelegate.m
