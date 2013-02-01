@@ -26,4 +26,31 @@
 #import "bareboneApp.h"
 
 @implementation BareboneApp
+
+- (void)run
+{
+#if 1
+  [NSApp finishLaunching];
+
+  while (1) { // Infinite loop
+    while (1) {
+      NSEvent *event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+      if (event == nil)
+        break;
+
+      NSLog(@"%@", event);
+
+      [NSApp sendEvent:event];
+    }
+
+    if (![NSApp keyWindow] && ![NSApp mainWindow]) {
+      if ([[self delegate] applicationShouldTerminate:self] == NSTerminateNow)
+        [self terminate:self];
+    }
+  }
+#else
+  [super run];
+#endif
+}
+
 @end

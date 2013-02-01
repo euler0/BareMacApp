@@ -1,3 +1,4 @@
+/* -*- objective-c++ -*- */
 /*
  * Copyright (c) 2013 Vincent Lee. All rights reserved.
  *
@@ -23,14 +24,24 @@
  * SUCH DAMAGE.
  */
 
-#import "windowDelegate.h"
+#import "appDelegate.h"
 
-@implementation WindowDelegate
+@implementation AppDelegate
 
-- (BOOL)windowShouldClose:(id)sender
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-  NSLog(@"-windowShouldClose");
-  [NSApp stop:self];
+  NSLog(@"-applicationDidFinishLaunching");
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+  NSLog(@"-applicationShouldTerminate");
+  return NSTerminateNow;
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+  NSLog(@"-applicationShouldTerminateAfterLastWindowClosed");
   return YES;
 }
 

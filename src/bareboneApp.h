@@ -29,4 +29,6 @@
 @interface BareboneApp: NSApplication {
 }
 
+- (void)run;
+
 @end
