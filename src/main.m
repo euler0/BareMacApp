@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013, 2014 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -30,32 +30,32 @@
 
 void makeFrontApplication()
 {
-  ProcessSerialNumber psn;
-  if (!GetCurrentProcess(&psn)) {
-    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-    SetFrontProcess(&psn);
-  }
+    ProcessSerialNumber psn;
+    if (!GetCurrentProcess(&psn)) {
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+        SetFrontProcess(&psn);
+    }
 }
 
 int main(int argc, char *argv[])
 {
-  makeFrontApplication();
+    makeFrontApplication();
 
-  [BareboneApp sharedApplication];
-  [NSApp setDelegate:[AppDelegate new]];
+    [BareboneApp sharedApplication];
+    [NSApp setDelegate:[AppDelegate new]];
 
-  NSWindow *window;
-  NSRect frame = NSMakeRect(100, 100, 640, 480);
-  NSUInteger styleMask = NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask;
-  NSRect rect = [NSWindow contentRectForFrameRect:frame styleMask:styleMask];
-  window = [[NSWindow alloc] initWithContentRect:rect styleMask:styleMask backing:NSBackingStoreBuffered defer:false];
-  [window setBackgroundColor:[NSColor blackColor]];
+    NSWindow *window;
+    NSRect frame = NSMakeRect(100, 100, 640, 480);
+    NSUInteger styleMask = NSTitledWindowMask | NSMiniaturizableWindowMask | NSClosableWindowMask;
+    NSRect rect = [NSWindow contentRectForFrameRect:frame styleMask:styleMask];
+    window = [[NSWindow alloc] initWithContentRect:rect styleMask:styleMask backing:NSBackingStoreBuffered defer:false];
+    [window setBackgroundColor:[NSColor blackColor]];
 
-  WindowDelegate *delegate = [WindowDelegate new];
-  [window setDelegate:delegate];
+    WindowDelegate *delegate = [WindowDelegate new];
+    [window setDelegate:delegate];
 
-  //[window makeMainWindow];
-  [window makeKeyAndOrderFront:nil];
-
-  [NSApp run];
+    //[window makeMainWindow];
+    [window makeKeyAndOrderFront:nil];
+    
+    [NSApp run];
 }

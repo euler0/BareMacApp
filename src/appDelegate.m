@@ -1,6 +1,6 @@
 /* -*- objective-c++ -*- */
 /*
- * Copyright (c) 2013 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013, 2014 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -30,19 +30,19 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-  NSLog(@"-applicationDidFinishLaunching");
+    NSLog(@"-applicationDidFinishLaunching");
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
-  NSLog(@"-applicationShouldTerminate");
-  return NSTerminateNow;
+    NSLog(@"-applicationShouldTerminate");
+    return NSTerminateNow;
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
 {
-  NSLog(@"-applicationShouldTerminateAfterLastWindowClosed");
-  return YES;
+    NSLog(@"-applicationShouldTerminateAfterLastWindowClosed");
+    return YES;
 }
 
 @end

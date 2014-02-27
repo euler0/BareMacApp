@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013, 2014 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,28 +29,24 @@
 
 - (void)run
 {
-#if 1
-  [NSApp finishLaunching];
+    [NSApp finishLaunching];
 
-  while (1) { // Infinite loop
-    while (1) {
-      NSEvent *event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
-      if (event == nil)
-        break;
+    while (1) { // Infinite loop
+        while (1) {
+            NSEvent *event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+            if (event == nil)
+                break;
 
-      NSLog(@"%@", event);
+            NSLog(@"%@", event);
 
-      [NSApp sendEvent:event];
+            [NSApp sendEvent:event];
+        }
+
+        if (![NSApp keyWindow] && ![NSApp mainWindow]) {
+            if ([[self delegate] applicationShouldTerminate:self] == NSTerminateNow)
+                [self terminate:self];
+        }
     }
-
-    if (![NSApp keyWindow] && ![NSApp mainWindow]) {
-      if ([[self delegate] applicationShouldTerminate:self] == NSTerminateNow)
-        [self terminate:self];
-    }
-  }
-#else
-  [super run];
-#endif
 }
 
 @end
