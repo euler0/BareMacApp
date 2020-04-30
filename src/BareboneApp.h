@@ -1,4 +1,4 @@
-/* -*- objective-c++ -*- */
+/* -*- objective-c -*- */
 /*
  * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
@@ -28,11 +28,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WindowDelegate: NSResponder<NSWindowDelegate> {
-}
+@interface BareboneApp : NSApplication
 
-// Closing Windows
-- (BOOL) windowShouldClose:(id)sender;
+- (void)run;
 
 @end
 

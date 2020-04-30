@@ -7,13 +7,13 @@ project(${PROJECT})
 find_library(COCOA_LIBRARY Cocoa)
 
 set(SOURCE_FILES
-    src/appDelegate.h
-    src/appDelegate.m
-    src/bareboneApp.h
-    src/bareboneApp.m
+    src/AppDelegate.h
+    src/AppDelegate.m
+    src/BareboneApp.h
+    src/BareboneApp.m
     src/main.m
-    src/windowDelegate.h
-    src/windowDelegate.m
+    src/WindowDelegate.h
+    src/WindowDelegate.m
 )
 
 add_executable(${PROJECT}

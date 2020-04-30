@@ -1,4 +1,3 @@
-/* -*- objective-c++ -*- */
 /*
  * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
@@ -24,14 +23,30 @@
  * SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "BareboneApp.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation BareboneApp
 
-@interface BareboneApp : NSApplication
+- (void)run
+{
+    [NSApp finishLaunching];
 
-- (void)run;
+    while (1) { // Infinite loop
+        while (1) {
+            NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+            if (event == nil)
+                break;
+
+            NSLog(@"%@", event);
+
+            [NSApp sendEvent:event];
+        }
+
+        if (![NSApp keyWindow] && ![NSApp mainWindow]) {
+            if ([[self delegate] applicationShouldTerminate:self] == NSTerminateNow)
+                [self terminate:self];
+        }
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

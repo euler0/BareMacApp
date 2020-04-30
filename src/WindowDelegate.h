@@ -1,3 +1,4 @@
+/* -*- objective-c -*- */
 /*
  * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
@@ -23,15 +24,16 @@
  * SUCH DAMAGE.
  */
 
-#import "windowDelegate.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation WindowDelegate
+NS_ASSUME_NONNULL_BEGIN
 
-- (BOOL)windowShouldClose:(id)sender
-{
-    NSLog(@"-windowShouldClose");
-    [NSApp stop:self];
-    return YES;
+@interface WindowDelegate: NSResponder<NSWindowDelegate> {
 }
 
+// Closing Windows
+- (BOOL) windowShouldClose:(id)sender;
+
 @end
+
+NS_ASSUME_NONNULL_END

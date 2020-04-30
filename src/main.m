@@ -24,9 +24,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "appDelegate.h"
-#import "bareboneApp.h"
-#import "windowDelegate.h"
+#import "AppDelegate.h"
+#import "BareboneApp.h"
+#import "WindowDelegate.h"
 
 void makeFrontApplication()
 {

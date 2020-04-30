@@ -1,4 +1,3 @@
-/* -*- objective-c++ -*- */
 /*
  * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
@@ -24,16 +23,25 @@
  * SUCH DAMAGE.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "AppDelegate.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation AppDelegate
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+    NSLog(@"-applicationDidFinishLaunching");
+}
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notification;
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender;
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication;
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    NSLog(@"-applicationShouldTerminate");
+    return NSTerminateNow;
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+{
+    NSLog(@"-applicationShouldTerminateAfterLastWindowClosed");
+    return YES;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END
