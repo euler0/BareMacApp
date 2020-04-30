@@ -5,7 +5,6 @@ set(PROJECT barebone-cocoa)
 project(${PROJECT})
 
 find_library(COCOA_LIBRARY Cocoa)
-find_library(CARBON_LIBRARY Carbon)
 
 set(SOURCE_FILES
     src/appDelegate.h
@@ -23,5 +22,4 @@ add_executable(${PROJECT}
 
 target_link_libraries(${PROJECT}
     ${COCOA_LIBRARY}
-    ${CARBON_LIBRARY}
 )

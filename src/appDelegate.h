@@ -1,6 +1,6 @@
 /* -*- objective-c++ -*- */
 /*
- * Copyright (c) 2013, 2014 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,11 +26,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate: NSResponder {
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification;
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender;
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication;
 
 @end
+
+NS_ASSUME_NONNULL_END

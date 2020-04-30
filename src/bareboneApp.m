@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2014 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -33,7 +33,7 @@
 
     while (1) { // Infinite loop
         while (1) {
-            NSEvent *event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
+            NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
             if (event == nil)
                 break;
 
