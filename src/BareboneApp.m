@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2020 Vincent Lee. All rights reserved.
+ * Copyright (c) 2013-2024 Vincent Lee. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,23 +29,32 @@
 
 - (void)run
 {
-    [NSApp finishLaunching];
+    NSDate *distantFuture = [NSDate distantFuture];
+    NSAutoreleasePool *pool;
 
-    while (1) { // Infinite loop
-        while (1) {
-            NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:[NSDate distantPast] inMode:NSDefaultRunLoopMode dequeue:YES];
-            if (event == nil)
-                break;
+    pool = [[NSAutoreleasePool alloc] init];
+    [self finishLaunching];
+    [pool release];
 
-            NSLog(@"%@", event);
+    while (1) {
+        pool = [[NSAutoreleasePool alloc] init];
 
-            [NSApp sendEvent:event];
+        NSEvent *event = [self nextEventMatchingMask:NSEventMaskAny
+                                           untilDate:distantFuture
+                                              inMode:NSDefaultRunLoopMode
+                                             dequeue:YES];
+        [self sendEvent:event];
+        [self updateWindows];
+
+        if ([[self windows] count] == 0) {
+            if ([self.delegate respondsToSelector:@selector(applicationShouldTerminateAfterLastWindowClosed:)]) {
+                if ([self.delegate applicationShouldTerminateAfterLastWindowClosed:self]) {
+                    [self terminate:self];
+                }
+            }
         }
 
-        if (![NSApp keyWindow] && ![NSApp mainWindow]) {
-            if ([[self delegate] applicationShouldTerminate:self] == NSTerminateNow)
-                [self terminate:self];
-        }
+        [pool release];
     }
 }
 
